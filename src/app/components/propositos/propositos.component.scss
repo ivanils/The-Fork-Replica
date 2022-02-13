@@ -1,0 +1,19 @@
+.propositos__contenedor{
+    margin: var(--margin-secciones);
+    .img__propositos{
+        border-radius: .3rem;
+        &.no__res{
+            @media screen and (max-width: 800px) {
+                display: none;
+            }
+        }
+        &.res{
+            display: none;
+            @media screen and (max-width: 800px) {
+                display: block;
+                width: 80%;
+                margin: auto;
+            }
+        }
+    }
+}

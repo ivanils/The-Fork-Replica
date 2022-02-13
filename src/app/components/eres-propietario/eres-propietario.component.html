@@ -1,0 +1,18 @@
+<div class="propietario">
+    <h3 class="titulo__seccion">¿Eres propietario de un restaurante?</h3>
+    <div class="propietario__tarjeta">
+        <div class="izquierda"><img src="https://c.tfstatic.com/w_800,h_508,c_fill,g_auto:subject,q_auto,f_auto/w_400/tf-product/ContactPage/contactpage_background.png" alt="imagen propietario" class="img__propietario"></div>
+        <div class="derecha">
+            <div
+            *ngFor="let opcion of opciones; let i = index"
+            class="opciones__propietario">
+                <h4 class="titulo__opcion">{{opcion.titulo}}</h4>
+                <p class="descripcion__opcion">{{opcion.descripcion}}</p>
+                <button class="btn__opcion">
+                    <a *ngIf="opcion.routing == false" [href]="opcion.href">{{opcion.boton}}</a>
+                    <a *ngIf="opcion.routing" [routerLink]="opcion.href">{{opcion.boton}}</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

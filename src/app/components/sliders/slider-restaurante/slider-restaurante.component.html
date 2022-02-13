@@ -1,0 +1,47 @@
+<div class="contenedor__slider">
+    <div class="slider__top">
+        <h3 class="titulo__seccion">{{titulo}}</h3>
+        <div class="slider__flechas">
+            <div class="flecha izq" 
+            [ngClass]=" { 'inactive' : this.moverSlider == 0} "
+            (click)="disminuirMoverSlider()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"
+                    focusable="false" class="css-p3qwn0 ejhntxf0" class="svg__flecha">
+                    <path fill-rule="evenodd"
+                        d="M15.749 20.5c-.24 0-.48-.086-.673-.26l-8.249-7.496a1 1 0 010-1.479l8.249-7.504a1 1 0 011.346 1.478l-7.436 6.765 7.436 6.756a1.002 1.002 0 01-.673 1.74">
+                    </path>
+                </svg>
+            </div>
+            <div class="flecha drc"
+            [ngClass]=" { 'inactive' : this.moverSlider >= this.vecesSlide - 1} "
+            (click)="aumentarMoverSlider()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"
+                focusable="false" class="svg__flecha">
+                <path fill-rule="evenodd"
+                d="M8.25 20.5a1.002 1.002 0 01-.673-1.74l7.436-6.756-7.436-6.765a1 1 0 111.346-1.478l8.249 7.504a1 1 0 010 1.479L8.923 20.24c-.193.174-.433.26-.673.26">
+            </path>
+        </svg>
+    </div>
+</div>
+</div>
+<!-- <div class="absolute">
+    cuantosVeo: {{cuantosVeo}} || contenidos.length : {{contenidos.length}} ||    tamaño slider: {{tamanoSlider()}}      ||       AnchoCard: {{anchoTarjeta()}} || {{valorTranslate()}} || moverslider: {{moverSlider}}
+    width: {{width}} || {{tipoSlider}}
+</div> -->
+<div class="slider__bot">
+        <div class="contenedor__tarjetas"
+        [ngStyle]="{
+            'width' : tamanoSlider(),
+            'transform' : valorTranslate()
+        }">
+                <app-slider-card
+            *ngFor=" let contenido of contenidos "
+            [tipo]=" contenido.tipo "
+            [dato]=" contenido "
+            [ngStyle]="{'width' : anchoTarjeta()}"
+            ></app-slider-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+  
+<div class="tarjeta"
+[ngClass] ="{'ciudad' : tipo === 'ciudad'}">
+   <a [routerLink]="['/' , dato.tipo , dato.enlace]" class="enlace__card">
+    <div *ngIf=" tipo === 'restaurante' && dato.insider" class="tag__insider"><svg width="1.25rem" height="48" viewBox="0 0 26 40" aria-hidden="true" focusable="false"><path fill="#28433C" d="M2.5,-1.02922115e-11 L23.5,-1.02922115e-11 C24.8807119,-1.02949178e-11 26,1.11928813 26,2.5 L26,29.2085958 C26,30.0053745 25.620199,30.754433 24.9774482,31.2253127 L14.4774482,38.9176203 C13.5978728,39.5619979 12.4021272,39.5619979 11.5225518,38.9176203 L1.02255178,31.2253127 C0.379800996,30.754433 -4.96074808e-15,30.0053745 -1.0658141e-14,29.2085958 L-1.0658141e-14,2.5 C-1.08272295e-14,1.11928813 1.11928813,-1.02919579e-11 2.5,-1.02922115e-11 Z"></path><path fill="#FFF" d="M6,23 L6,11 L7.78384528,11 L7.78384528,23 L6,23 Z M12.116041,14.5492958 L12.116041,23 L10.3321957,23 L10.3321957,11 L11.7337884,11 L18.2002275,19.6535211 L18.2002275,11.0169014 L20,11.0169014 L20,23 L18.5187713,23 L12.116041,14.5492958 Z"></path></svg></div>
+    <div class="tarjeta__imagen">
+        <img [src]=" dato.imagen " [alt]=" dato.titulo " class="tarjeta__img">
+        <h3 *ngIf=" tipo === 'ciudad' "
+        [ngClass] ="{'ciudad' : tipo === 'ciudad'}"
+        class="tarjeta__titulo">{{ dato.titulo }}</h3>
+    </div>
+    <h6 *ngIf=" tipo === 'restaurante' " class="tarjeta__categoria"><span *ngFor="let categoria of dato.categoria">{{categoria}}</span></h6>
+    <div class="main__tarjeta">
+        <h3 *ngIf=" tipo !== 'ciudad' " class="tarjeta__titulo">{{ dato.titulo }}</h3>
+        <h3 *ngIf=" tipo === 'restaurante' " class="nota__restaurante"><span *ngFor="let nota of dato.nota">{{nota}}</span></h3>
+    </div>
+    <div *ngIf=" tipo === 'restaurante' " class="tags__restaurante">
+        <span *ngIf=" dato.dobleYums " class="tag doble">DOBLE YUMS</span>
+        <span *ngIf=" dato.pay " class="tag pay">🍽 PAY</span>
+        <span *ngIf=" dato.insider " class="tag insider">INSIDER</span>
+    </div>
+    <div class="tarjeta__info">
+        <p  *ngIf=" tipo !== 'ciudad' " class="tarjeta__parrafo" [ngClass]="{'restaurante': tipo == 'restaurante'}">{{ dato.parrafo }}</p>
+        <p *ngIf=" tipo === 'restaurante' " class="tarjeta__precio">{{ dato.precio }}€ de precio medio</p>
+    </div>
+    <div *ngIf=" tipo === 'restaurante' " class="tarjeta__oferta">
+        <span *ngIf=" dato.descuento " class="oferta__descuento">{{dato.descuento}}</span>
+        <span *ngIf=" dato.aceptaYums " class="oferta__acepta">Acepta Yums</span>
+    </div>
+    <a *ngIf=" tipo === 'oferta' && dato.routing == false" [href]="dato.enlace" class="tarjeta__enlace">{{dato.textoEnlace}}</a>
+    <a *ngIf=" tipo === 'oferta' && dato.routing == true" [routerLink]="dato.enlace" class="tarjeta__enlace">{{dato.textoEnlace}}</a>
+   </a>
+</div>

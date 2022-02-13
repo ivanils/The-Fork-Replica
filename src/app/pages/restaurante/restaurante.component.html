@@ -1,0 +1,326 @@
+<div class="wrapper">
+    <div class="izquierda">
+        <div class="restaurante__tags">
+            <span *ngIf=" infoRestaurante.insider " class="tag insider">INSIDER</span>
+            <span *ngIf=" infoRestaurante.pay " class="tag pay">🍽 PAY</span>
+            <span *ngIf=" infoRestaurante.dobleyums " class="tag dobleyums">DOBLE YUMS</span>
+            <p class="p__categorias"><span class="span__categorias"
+                    *ngFor="let categoria of infoRestaurante.categoria">{{categoria}}</span></p>
+        </div>
+        <div class="info__restaurante">
+            <div class="info__main">
+                <div class="nombre__restaurante">
+                    <h2>{{infoRestaurante.titulo}}</h2>
+                </div>
+                <div class="num__restaurante">
+                    <div class="nota__restaurante"><span>{{infoRestaurante.nota}}</span>/10</div>
+                    <div class="comentarios__restaurante"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" aria-hidden="true" focusable="false" mr="xs" alt=""
+                            class="css-igdmea e125e8xs0">
+                            <path fill-rule="evenodd"
+                                d="M10.5 3C6.365 3 3 6.365 3 10.5S6.365 18 10.5 18h3c.131 0 .26.033.372.098L18 20.458v-3.593c0-.224.1-.437.272-.579A7.478 7.478 0 0021 10.5C21 6.365 17.635 3 13.5 3h-3zm8.25 19.5a.747.747 0 01-.372-.098L13.301 19.5H10.5c-4.963 0-9-4.037-9-9s4.037-9 9-9h3c4.963 0 9 4.037 9 9 0 2.575-1.088 5-3 6.709v4.541a.75.75 0 01-.75.75z">
+                            </path>
+                        </svg>27336</div>
+                </div>
+            </div>
+            <div class="info__small">
+                <p class="lugar__restaurante">{{infoRestaurante.parrafo}} <span><a href="#">VER EL MAPA</a></span></p>
+                <div class="ofertas__restaurante">
+                    <span class="oferta">Precio medio {{infoRestaurante.precio}} €</span>
+                    <span *ngIf=" infoRestaurante.aceptaYums " class="oferta acepta">Acepta Yums</span>
+                </div>
+                <div class="descuento__restaurante" *ngIf="infoRestaurante.descuento">¡{{infoRestaurante.descuento}} en
+                    carta!</div>
+            </div>
+        </div>
+        <div class="slider">
+            <!-- HAY QUE MONTAR EL SLIDER AUTOCALCULADO -->
+            <div class="slider__img" [ngStyle]="{'width': tamanoSlider(), 'transform' : valorTranslate()}">
+                <img *ngFor="let imagen of infoRestaurante.imagenes" [src]="imagen" [ngStyle]="{'width': tamanoImagen()}" alt="">
+            </div>
+            <div class="flechas__slider">
+                <div class="flecha izq" (click)="disminuirMover()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        aria-hidden="true" focusable="false" class="css-p3qwn0 ejhntxf0">
+                        <path fill-rule="evenodd"
+                            d="M15.749 20.5c-.24 0-.48-.086-.673-.26l-8.249-7.496a1 1 0 010-1.479l8.249-7.504a1 1 0 011.346 1.478l-7.436 6.765 7.436 6.756a1.002 1.002 0 01-.673 1.74">
+                        </path>
+                    </svg>
+                </div>
+                <div class="flecha drc" (click)="aumentarMover()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        aria-hidden="true" focusable="false" class="css-p3qwn0 e10xbrur0">
+                        <path fill-rule="evenodd"
+                            d="M8.25 20.5a1.002 1.002 0 01-.673-1.74l7.436-6.756-7.436-6.765a1 1 0 111.346-1.478l8.249 7.504a1 1 0 010 1.479L8.923 20.24c-.193.174-.433.26-.673.26">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+            <!-- PUNTOS AUTOCALCULADOS TAMBIÉN -->
+            <div class="puntos__slider">
+                <button class="punto" *ngFor="let boton of infoRestaurante.imagenes; let i = index" [ngClass]="{'activo': mover == i}" (click)="cambiarMover(i)"></button>
+            </div>
+        </div>
+        <div class="seguridad">
+            <h4 class="aviso">Este restaurante toma las medidas de seguridad apropiadas*:</h4>
+            <div class="contenido__seguridad" [ngClass]="{'activo': botonSeguridad}">
+                <ul class="ul__seguridad">
+                    <!-- ESTO VAN EN UN ARRAY PROBABLEMENTE -->
+                    <li class="li__seguridad">
+                        <span class="span__svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                aria-hidden="true" focusable="false" class="css-p3qwn0 e1522hi30">
+                                <g fill-rule="evenodd">
+                                    <path
+                                        d="M12 21c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9m0-19.5C6.21 1.5 1.5 6.21 1.5 12S6.21 22.5 12 22.5 22.5 17.79 22.5 12 17.79 1.5 12 1.5">
+                                    </path>
+                                    <path
+                                        d="M15.955 8.338l-5.365 5.68-2.57-2.476a.75.75 0 00-1.04 1.08l3.116 3c.139.136.326.21.52.21h.017c.2-.005.39-.09.528-.235l5.885-6.23a.75.75 0 00-1.091-1.03">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                        2 metros de distancia entre clientes
+                    </li>
+                    <li class="li__seguridad">
+                        <span class="span__svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                aria-hidden="true" focusable="false" class="css-p3qwn0 e1522hi30">
+                                <g fill-rule="evenodd">
+                                    <path
+                                        d="M12 21c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9m0-19.5C6.21 1.5 1.5 6.21 1.5 12S6.21 22.5 12 22.5 22.5 17.79 22.5 12 17.79 1.5 12 1.5">
+                                    </path>
+                                    <path
+                                        d="M15.955 8.338l-5.365 5.68-2.57-2.476a.75.75 0 00-1.04 1.08l3.116 3c.139.136.326.21.52.21h.017c.2-.005.39-.09.528-.235l5.885-6.23a.75.75 0 00-1.091-1.03">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                        El personal lleva mascarilla
+                    </li>
+                    <li class="li__seguridad">
+                        <span class="span__svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                aria-hidden="true" focusable="false" class="css-p3qwn0 e1522hi30">
+                                <g fill-rule="evenodd">
+                                    <path
+                                        d="M12 21c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9m0-19.5C6.21 1.5 1.5 6.21 1.5 12S6.21 22.5 12 22.5 22.5 17.79 22.5 12 17.79 1.5 12 1.5">
+                                    </path>
+                                    <path
+                                        d="M15.955 8.338l-5.365 5.68-2.57-2.476a.75.75 0 00-1.04 1.08l3.116 3c.139.136.326.21.52.21h.017c.2-.005.39-.09.528-.235l5.885-6.23a.75.75 0 00-1.091-1.03">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                        Gel hidroalcohólico o desinfectante para los clientes
+                    </li>
+                    <li class="li__seguridad">
+                        <span class="span__svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                aria-hidden="true" focusable="false" class="css-p3qwn0 e1522hi30">
+                                <g fill-rule="evenodd">
+                                    <path
+                                        d="M12 21c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9m0-19.5C6.21 1.5 1.5 6.21 1.5 12S6.21 22.5 12 22.5 22.5 17.79 22.5 12 17.79 1.5 12 1.5">
+                                    </path>
+                                    <path
+                                        d="M15.955 8.338l-5.365 5.68-2.57-2.476a.75.75 0 00-1.04 1.08l3.116 3c.139.136.326.21.52.21h.017c.2-.005.39-.09.528-.235l5.885-6.23a.75.75 0 00-1.091-1.03">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                        Limpieza extra en mesas, cocinas y baños
+                    </li>
+                    <li class="li__seguridad">
+                        <span class="span__svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                aria-hidden="true" focusable="false" class="css-p3qwn0 e1522hi30">
+                                <g fill-rule="evenodd">
+                                    <path
+                                        d="M12 21c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9m0-19.5C6.21 1.5 1.5 6.21 1.5 12S6.21 22.5 12 22.5 22.5 17.79 22.5 12 17.79 1.5 12 1.5">
+                                    </path>
+                                    <path
+                                        d="M15.955 8.338l-5.365 5.68-2.57-2.476a.75.75 0 00-1.04 1.08l3.116 3c.139.136.326.21.52.21h.017c.2-.005.39-.09.528-.235l5.885-6.23a.75.75 0 00-1.091-1.03">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                        Menús digitales, desechables o sin contacto
+                    </li>
+                    <li class="li__seguridad">
+                        <span class="span__svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                aria-hidden="true" focusable="false" class="css-p3qwn0 e1522hi30">
+                                <g fill-rule="evenodd">
+                                    <path
+                                        d="M12 21c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9m0-19.5C6.21 1.5 1.5 6.21 1.5 12S6.21 22.5 12 22.5 22.5 17.79 22.5 12 17.79 1.5 12 1.5">
+                                    </path>
+                                    <path
+                                        d="M15.955 8.338l-5.365 5.68-2.57-2.476a.75.75 0 00-1.04 1.08l3.116 3c.139.136.326.21.52.21h.017c.2-.005.39-.09.528-.235l5.885-6.23a.75.75 0 00-1.091-1.03">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                        Se acepta pago con tarjeta
+                    </li>
+                </ul>
+                <p class="p__asterisco">*El restaurante declara dicha información</p>
+            </div>
+            <button (click)="cambiarBoton()" *ngIf="botonSeguridad == false " class="ver__ocultar">VER MÁS INFORMACIÓN
+            </button>
+            <button (click)="cambiarBoton()" *ngIf="botonSeguridad == true " class="ver__ocultar"> OCULTAR </button>
+        </div>
+        <div class="tabs__restaurante">
+            <div class="tabs">
+                <!-- {{tabs}} -->
+                <button *ngFor="let boton of arrayInfo; let i = index" class="tab" (click)="cambiarTabs(i)" [ngClass]="{'activo': tabs == i}">{{boton.boton}}</button>
+            </div>
+            <div *ngFor="let contenido of arrayInfo; let i = index" [ngClass]="{'activo': tabs == i}" class="contenido__tabs">
+                <h2 *ngIf="contenido.insider" class="contenido__h2">Seleccionado por INSIDER</h2>
+                <h6 class="small" *ngIf="contenido.insider">Un descubrimiento excepcional de nuestra rigurosa selección de los mejores sitios donde comer actualmente</h6>
+                
+                <h2 *ngIf="contenido.tipo == 'menu'" class="contenido__h2">Menú del restaurante</h2>
+                <div *ngIf="contenido.tipo == 'menu'" class="tags__precio">
+                    <span class="tag svg__billete">
+                        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" font-size="m" color="special.black" class="css-12m8qvz e60jv3k0"><path d="M21.545 5.25c.528 0 .955.427.955.955v11.59a.955.955 0 01-.955.955H2.455a.955.955 0 01-.955-.955V6.205c0-.528.427-.955.955-.955h19.09zm-2.7 12H21v-2.156a3.005 3.005 0 00-2.155 2.156zM17.312 6.75H6.688A4.504 4.504 0 013 10.438v3.124a4.504 4.504 0 013.687 3.688h10.624A4.504 4.504 0 0121 13.562v-3.124a4.504 4.504 0 01-3.688-3.687zM3.001 15.095L3 17.25h2.155a3.005 3.005 0 00-2.154-2.155zM5.155 6.75L3 6.75v2.155a3.005 3.005 0 002.155-2.154zM21 6.75l-2.155.001A3.005 3.005 0 0021 8.906V6.75z"></path><path d="M12 8.25c1.711 0 3 1.718 3 3.75s-1.289 3.75-3 3.75S9 14.032 9 12s1.289-3.75 3-3.75zm0 1.5c-.774 0-1.5.968-1.5 2.25s.726 2.25 1.5 2.25 1.5-.968 1.5-2.25-.726-2.25-1.5-2.25zm-5.25 1.5a.75.75 0 01.135 1.488l-.135.012h-1.5a.75.75 0 01-.135-1.488l.135-.012h1.5zm12 0a.75.75 0 01.135 1.488l-.135.012h-1.5a.75.75 0 01-.135-1.488l.135-.012h1.5z"></path></svg>
+                    </span>
+                    <span class="tag precio__medio">Precio medio {{infoRestaurante.precio}} €</span>
+                    <span class="tag ayuda">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="css-p3qwn0 esv7iuz0"><g fill-rule="evenodd"><path d="M12 1.5c5.799 0 10.5 4.701 10.5 10.5S17.799 22.5 12 22.5 1.5 17.799 1.5 12 6.201 1.5 12 1.5zm0 1.313a9.187 9.187 0 100 18.374 9.187 9.187 0 000-18.375z"></path><path d="M12 15.938a.984.984 0 110 1.968.984.984 0 010-1.968zm.154-10.172c2.077 0 3.127 1.57 3.127 3.126 0 .968-.412 1.834-1.523 2.944-.879.879-1.102 1.318-1.102 1.805v.656a.656.656 0 11-1.312 0v-.656c0-.877.38-1.628 1.486-2.733.88-.88 1.139-1.424 1.139-2.016 0-.916-.6-1.814-1.815-1.814-1.366 0-2.123.864-2.123 1.814a.656.656 0 11-1.312 0c0-1.64 1.303-3.126 3.435-3.126z"></path></g></svg>
+                    </span>
+                    <span class="tag welcome">
+                        <span class="svg__welcome">
+                            <svg width="24" height="24" viewBox="0 0 900 900" aria-hidden="true" focusable="false" class="css-8beyya ekrttna0"><path class="blue" d="M0 0h900v900H0z"></path><path class="white" d="M0 0h900v900H0zM451.68 326.36H383.3l34.19-82.48zm45 107H574L462.83 181.21h-88.51l-111.2 252.12h75.56l20.88-50.42h115.86zm335.34 0h68V181.21H794.21l-56.49 157-56.13-157H574v252.12h68V256.85l64.77 176.48h60.44L832 256.45zM428.31 663.7v-39.25h142.12v-56.92H428.31v-39.26H574v-58.35H359.57v252.13H574V663.7zm402.53-68.34L900 669.03v-146.7zm-21.13 126.69H900L780.56 595.27 900 469.92h-88.86l-73.75 80.68-73-80.68H574l118.77 126.07L574 722.05h87.79l74.21-81.4zM900 900.9V758.15H791.42l-55.9-61.88-56.19 61.88h-358V469.77H205.81l143.31-324.66h138.22l49.34 111.22V145.11h171.09l29.71 83.81 29.89-83.81H900V0H0v900.9z"></path></svg>
+                        </span>
+                        Welcome
+                    </span>
+                </div>
+
+                <div class="textos__main" *ngFor="let textos of contenido.texto">
+                    <p  [ngClass]="{'insider': contenido.insider, 'menu': contenido.tipo == 'menu'}">{{textos.parrafo}} </p>
+                    <span *ngIf="textos.precio" class="menu">{{textos.precio}}€</span>
+                </div>
+
+                <div *ngIf="contenido.insider" class="consejo__insider">
+                    <h5 class="consejo">Consejo INSIDER</h5>
+                    <p class="p__consejo">Si hay algo que no puedes dejar de probar, es el nido de huevo a baja temperatura con patatas paja, jamón y trufa porque te dejará sin palabras.</p>
+                </div>
+                <div class="enlace__menu">
+                    <button *ngIf="contenido.enlace" class="btn__enlace"><a [href]="contenido.enlace">VER MENÚS A LA CARTA Y DEL DÍA</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="derecha">
+        <div class="grupo__derecha">
+            <div class="top">
+                <h5 class="h5__top">Buscar restaurante <span class="tag descuento">{{infoRestaurante.descuento}}</span></h5>
+                <p class="p__top">Servicio gratuito <span class="span__top">Reserva confirmada inmediatamente</span></p>
+            </div>
+            <div class="pestanas">
+                <div class="secciones">
+                    <button class="seccion fecha">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                aria-hidden="true" focusable="false" class="blanco">
+                                <g fill-rule="evenodd">
+                                    <path
+                                        d="M22.5 7.5V3.75a.75.75 0 00-.75-.75H18V1.5a.75.75 0 00-1.5 0V3h-9V1.5a.75.75 0 00-1.5 0V3H2.25a.75.75 0 00-.75.75V7.5h21z">
+                                    </path>
+                                    <path
+                                        d="M17.25 14.5h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5zm0 3.5h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5zm-4.5-3.5h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5zm0 3.5h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5zm-4.5-3.5h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5zm0 3.5h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5zM1.5 9v12.75c0 .414.336.75.75.75h19.5a.75.75 0 00.75-.75V9h-21z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                        Fecha
+                    </button>
+                    <button class="seccion hora">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                aria-hidden="true" focusable="false" class="css-p3qwn0 e21uslf0">
+                                <g fill-rule="evenodd">
+                                    <path fill-rule="nonzero"
+                                        d="M15.53 14.47a.75.75 0 01-1.06 1.06l-3-3a.75.75 0 01-.22-.53V6a.75.75 0 111.5 0v5.69l2.78 2.78z">
+                                    </path>
+                                    <path
+                                        d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9m0 19.5C6.21 22.5 1.5 17.79 1.5 12S6.21 1.5 12 1.5 22.5 6.21 22.5 12 17.79 22.5 12 22.5">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                    </button>
+                    <button class="seccion personas">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                aria-hidden="true" focusable="false" class="css-p3qwn0 e78l98l0">
+                                <g fill-rule="evenodd">
+                                    <path
+                                        d="M9 6c0-1.654 1.346-3 3-3s3 1.346 3 3v2.25c0 1.654-1.346 3-3 3s-3-1.346-3-3V6zm3 6.75c2.481 0 4.5-2.019 4.5-4.5V6c0-2.481-2.019-4.5-4.5-4.5A4.505 4.505 0 007.5 6v2.25c0 2.481 2.019 4.5 4.5 4.5z">
+                                    </path>
+                                    <path
+                                        d="M15.75 15h-7.5a6.756 6.756 0 00-6.75 6.75.75.75 0 001.5 0 5.256 5.256 0 015.25-5.25h7.5A5.256 5.256 0 0121 21.75a.75.75 0 001.5 0A6.756 6.756 0 0015.75 15">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                    </button>
+                    <button class="seccion descuento">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                aria-hidden="true" focusable="false" class="css-p3qwn0 eds1gnx0">
+                                <g fill-rule="evenodd">
+                                    <path
+                                        d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9m0 19.5C6.21 22.5 1.5 17.79 1.5 12S6.21 1.5 12 1.5 22.5 6.21 22.5 12 17.79 22.5 12 22.5">
+                                    </path>
+                                    <path
+                                        d="M14.5 14a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm2.273-6.773a.75.75 0 010 1.06l-8.485 8.486a.75.75 0 01-1.061-1.06l8.485-8.486a.75.75 0 011.061 0zM9.5 7a1.5 1.5 0 110 3 1.5 1.5 0 010-3z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="calendario">
+                <div class="fecha__calendario">
+                        <div class="flechas">
+                            <button class="fl izq" (click)="disminuirPosicion()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="css-p3qwn0 ejhntxf0"><path fill-rule="evenodd" d="M15.749 20.5c-.24 0-.48-.086-.673-.26l-8.249-7.496a1 1 0 010-1.479l8.249-7.504a1 1 0 011.346 1.478l-7.436 6.765 7.436 6.756a1.002 1.002 0 01-.673 1.74"></path></svg>
+                            </button>
+                            <button class="fl drc" (click)="aumentarPosicion()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="css-p3qwn0 e10xbrur0"><path fill-rule="evenodd" d="M8.25 20.5a1.002 1.002 0 01-.673-1.74l7.436-6.756-7.436-6.765a1 1 0 111.346-1.478l8.249 7.504a1 1 0 010 1.479L8.923 20.24c-.193.174-.433.26-.673.26"></path></svg>
+                            </button>
+                        </div>
+                        <div class="contenedor__meses" >
+                            <div class="cada__mes"  [ngStyle]="{'width': tamanoSliderMes(), 'transform': translateMes()}">
+                                <span *ngFor="let nombreMes of meses" class="span__fecha" [ngStyle]="{'width': tamanoMes()}">{{nombreMes.mes}} {{nombreMes.ano}}</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="tabla__calendario">
+                    <!-- {{posicion}} -->
+                    <div class="semana">
+                        <div class="dia__semana" *ngFor="let dia of arraySemana; let i = index">{{dia |slice:0:3}}</div>
+                    </div>
+                    <div class="mes">
+                        <div class="dia__mes" *ngFor="let dia of dias" ><span class="numero">{{dia}}</span> <span class="desc">{{infoRestaurante.descuento}}</span></div>
+                    </div>
+                </div>
+                <div class="mensaje__yums">
+                    <div class="svg__yums">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" aria-hidden="true" focusable="false" marginRight="xs" backgroundColor="special.yellow" class="css-1vfpzd e1nudred0" style="border-radius: 50%;"><g fill-rule="evenodd"><path d="M12 1.5c5.799 0 10.5 4.701 10.5 10.5S17.799 22.5 12 22.5 1.5 17.799 1.5 12 6.201 1.5 12 1.5zM12 3a9 9 0 100 18 9 9 0 000-18z"></path><path d="M10.224 18.664c.725 0 1.333-.187 1.824-.56.49-.373.837-.853 1.04-1.44l3.52-10.048h-2.016l-2.016 6.528-2.272-6.528H8.096L11.408 15c-.107.352-.208.645-.304.88a2.733 2.733 0 01-.288.552.822.822 0 01-.32.28.917.917 0 01-.384.08c-.117 0-.261-.013-.432-.04a4.136 4.136 0 01-.528-.12v1.856a3.326 3.326 0 001.072.176z"></path></g></svg>
+                    </div>
+                    <div class="texto"><p class="p__yums">Acepta Yums en estas fechas</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="mensaje__reserva__yums">
+            <div class="svg__reserva__yums">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false" display="block" class="css-z6fju0 e1nudred0" style="transform: scale(1.75);"><g fill-rule="evenodd"><path d="M12 1.5c5.799 0 10.5 4.701 10.5 10.5S17.799 22.5 12 22.5 1.5 17.799 1.5 12 6.201 1.5 12 1.5zM12 3a9 9 0 100 18 9 9 0 000-18z"></path><path d="M10.224 18.664c.725 0 1.333-.187 1.824-.56.49-.373.837-.853 1.04-1.44l3.52-10.048h-2.016l-2.016 6.528-2.272-6.528H8.096L11.408 15c-.107.352-.208.645-.304.88a2.733 2.733 0 01-.288.552.822.822 0 01-.32.28.917.917 0 01-.384.08c-.117 0-.261-.013-.432-.04a4.136 4.136 0 01-.528-.12v1.856a3.326 3.326 0 001.072.176z"></path></g></svg>
+            </div>
+            <div class="texto__reserva__yums">
+                <p>Haz una reserva en TheFork para ganar Yums y poder disfrutar de descuentos de fidelidad exclusivos</p>
+            </div>
+        </div>
+    </div>
+</div>

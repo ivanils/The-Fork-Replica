@@ -1,0 +1,74 @@
+@import "src/assets/mixins";
+.tarjeta {
+    width: 100%;
+    background: linear-gradient(153.43deg, var(--verde-transparente) 0%, rgb(232, 240, 229) 100%);
+    border-left: .5rem solid var(--verde-fork);
+    position: relative;
+    padding: 1rem;
+    overflow: hidden;
+    .tenedor__back{
+        position: absolute;
+        bottom: -30px;
+        right: 0;
+    }
+    .wrapper{
+        width: var(--wrapper-width);
+        @media screen and(max-width: 800px) {
+            width: 80%;
+            @include flex( row, wrap, space-between, flex-start);
+        }
+        // background-color: rebeccapurple;
+        margin: auto;
+        @include flex( row, nowrap, center, center);
+        .svg__tarjeta{
+            width: 85px;
+            // background-color: lime;
+            @media screen and (max-width: 800px) {
+                
+            }
+        }
+        .texto__tarjeta{
+            margin: 0 1rem;
+            width: 600px;
+            color: var(--gris-tenedor);
+            @media screen and (max-width: 800px) {
+                margin: 1rem 0;
+                width: 100%;
+            }
+            // background-color: yellow;
+        }
+        .btn__tarjeta{
+            width: 315px;
+            // background-color: orange;
+            @include flex( column, nowrap, center, center);
+            @media screen and (max-width: 400px) {
+                width: 95%;
+            }
+            .a__tarjeta{
+                background-color: var(--verde-fork);
+                width: 100%;
+                border-radius: .3rem;
+                color: white;
+                font-weight: 600;
+                font-size: 0.8rem;
+                @include flex(row, nowrap, space-around, center);
+                padding: .5rem;
+                &:hover{
+                    background-color: var(--verde-fork-oscuro);
+                }
+                svg{
+                    font-size: 0.8rem;
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+}
+.title__tarjeta{
+    font-weight: 600;
+    margin-bottom: .4rem;
+}
+.descripcion__tarjeta{
+    line-height: 1.5rem;
+}

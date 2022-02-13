@@ -1,0 +1,64 @@
+@import "src/assets/mixins";
+.como__funciona {
+    margin: 6rem 0;
+    @media screen and (max-width: 900px) {
+        margin: 2rem 0 6rem 0;
+        padding-bottom: 5rem;
+        &::-webkit-scrollbar{
+                -webkit-appearance: none;
+        }
+        &::-webkit-scrollbar:horizontal{
+                height: 8px;
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: var(--gris-medio);
+            border-radius: 5px;
+            &:hover{
+                 background-color: var(--verde-fork);   
+            }
+        }
+        overflow-x: scroll;
+    }
+    .contenidos__funciona {
+        @include flex(row, nowrap, space-between, center);
+        @media screen and (max-width: 900px) {
+            width: 400%;
+        }
+        .contenido {
+            width: 100%;
+            @media screen and (max-width: 900px) {
+                @include flex( column, nowrap, center, center);
+                margin: auto;
+            }
+            // background-color: red;
+            &:not(:last-of-type) {
+                margin-right: 1.5rem;
+            }
+            .svg__funciona {
+                @include flex(row, nowrap, flex-start, center);
+                .estrella {
+                    width: 1.5rem;
+                    &:not(:last-of-type) {
+                        margin-right: 0.2rem;
+                    }
+                }
+                svg {
+                    color: var(--verde-fork);
+                    width: 3.3rem;
+                    height: 3.3rem;
+                }
+                margin: 1rem 0;
+            }
+            .titulo__funciona{
+                font-weight: 700;
+                font-size: .875rem;
+                margin: 1.3rem 0;
+            }
+            .p__funciona{
+                font-weight: 400;
+                font-size: .78rem;
+                line-height: 1.3rem;
+            }
+        }
+    }
+}

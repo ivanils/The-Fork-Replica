@@ -1,0 +1,67 @@
+@import "src/assets/mixins";
+.propietario {
+    margin: 1rem auto 2rem auto;
+}
+.propietario__tarjeta {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid rgb(199, 199, 199);
+    @include flex(row, nowrap, center, center);
+    @media screen and( max-width: 1080px) {
+        flex-flow: column nowrap;
+    }
+    .izquierda {
+        flex: 1;
+        img{
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            min-height: 15rem;
+        }
+        @media screen and( max-width: 1080px) {
+            display: none;
+        }
+    }
+    .derecha {
+        flex: 1;
+        padding: 1rem 1.5rem;
+        @include flex(column, nowrap, space-around, center);
+        max-height: 15rem;
+        @media screen and( max-width: 1080px) {
+            width: 100%;
+            flex-flow: row nowrap;
+        }
+        @media screen and (max-width: 800px) {
+            max-height: none;
+            flex-flow: column nowrap;
+        }
+        .opciones__propietario{
+            width: 100%;
+            max-height: auto;
+            @media screen and (max-width: 800px) {
+              margin-bottom: 2rem;
+            }
+        }   
+        .titulo__opcion {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .descripcion__opcion {
+            font-size: 1.1rem;
+        }
+        .btn__opcion{
+            color: var(--verde-fork);
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--verde-fork);
+            border-radius: 1px;
+            padding: 0.5rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            &:hover {
+                color: var(--verde-fork-oscuro);
+                background-color: rgb(232 240 229);
+                border: 1px solid var(--verde-fork-oscuro);
+            }
+        }
+    }
+}

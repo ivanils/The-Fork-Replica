@@ -1,0 +1,684 @@
+@import "src/assets/mixins";
+
+.wrapper {
+    margin: auto;
+    position: relative;
+    margin-top: 1rem;
+    @include flex(row, nowrap, center, flex-start);
+    @media screen and (max-width: 1080px) {
+        width: 90%;
+    }
+    @media screen and (max-width: 900px) {
+        @include flex(column, nowrap, center, flex-start);
+    }
+}
+.izquierda {
+    margin: 1rem 2rem 0 0;
+    width: 65%;
+    @media screen and (max-width: 900px) {
+        width: 100%;
+    }
+    .restaurante__tags {
+        @include flex(row, nowrap, flex-start, center);
+        .tag {
+            padding: 0.3rem 0.5rem;
+            border-radius: 0.3rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: white;
+            margin: 0 0.2rem;
+            &.insider {
+                background-color: #28433c;
+            }
+            &.pay {
+                background-color: black;
+            }
+            &.dobleyums {
+                color: black;
+                background-color: #ffdd00;
+            }
+        }
+        .span__categorias {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            &:first-of-type {
+                position: relative;
+                margin: 0 0.9rem 0 0.5rem;
+                &::after {
+                    content: "";
+                    width: 4px;
+                    height: 4px;
+                    background-color: black;
+                    right: -10px;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 40%;
+                }
+            }
+        }
+    }
+    .info__restaurante {
+        @include flex(column, nowrap, center, flex-start);
+        width: 100%;
+        .info__main {
+            margin: 0.7rem 0 0 0;
+            width: 100%;
+            @include flex(row, nowrap, space-between, flex-start);
+            .nombre__restaurante {
+                h2 {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                }
+            }
+            .num__restaurante {
+                .nota__restaurante {
+                    font-size: 1.1rem;
+                    span {
+                        font-size: 1.9rem;
+                        font-weight: 600;
+                    }
+                }
+                .comentarios__restaurante {
+                    font-size: 1.1rem;
+                    margin-top: 0.2rem;
+                    svg {
+                        width: 17px;
+                        margin-right: 0.1rem;
+                    }
+                    @include flex(row, nowrap, center, flex-start);
+                }
+            }
+        }
+        .info__small {
+            .lugar__restaurante {
+                span a {
+                    color: var(--verde-fork);
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    margin-left: 1rem;
+                }
+            }
+            .ofertas__restaurante {
+                margin: 0.8rem 0;
+                .oferta {
+                    position: relative;
+                    &:not(:first-of-type) {
+                        margin-left: 1rem;
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            width: 3px;
+                            height: 3px;
+                            background-color: black;
+                            left: -8px;
+                            top: 40%;
+                            border-radius: 50%;
+                        }
+                    }
+                    &.acepta {
+                        border-bottom: 2px solid var(--amarillo-fork);
+                        @media screen and (max-width: 500px) {
+                            font-size: 70%;
+                        }
+                    }
+                }
+            }
+            .descuento__restaurante {
+                position: relative;
+                color: #cb1a23;
+                font-weight: 700;
+                font-size: 1rem;
+                padding: 0.3rem 0.7rem;
+                @include flex(column, nowrap, center, flex-start);
+                &::before {
+                    content: "";
+                    position: absolute;
+                    height: 100%;
+                    width: 3px;
+                    background-color: #cb1a23;
+                    left: 0;
+                }
+            }
+        }
+    }
+    .slider {
+        width: 100%;
+        // background-color: red;
+        margin: 1rem 0;
+        position: relative;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        @media screen and (max-width: 900px) {
+            overflow-x: scroll;
+            &::-webkit-scrollbar {
+                -webkit-appearance: none;
+                &:horizontal {
+                    height: 10px;
+                }
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: var(--gris-medio);
+                border-radius: 5px;
+                min-width: 15%;
+                &:hover {
+                    background-color: var(--verde-fork);
+                }
+            }
+        }
+        .slider__img {
+            @include flex(row, nowrap, center, center);
+            transition: 0.5s;
+            img {
+                width: 100%;
+            }
+        }
+        .flechas__slider {
+            position: absolute;
+            width: 100%;
+            top: calc(50% - 1.5rem);
+            right: 0;
+            z-index: 2;
+            padding: 0 1rem;
+            @include flex(row, nowrap, space-between, center);
+            @media screen and (max-width: 900px) {
+                display: none;
+            }
+            .flecha {
+                @media screen and (max-width: 900px) {
+                    width: 2rem;
+                    height: 100%;
+                }
+                border-radius: 0.2rem;
+                background-color: white;
+                border: 1px solid var(--gris-medio);
+                width: 3rem;
+                height: 3rem;
+                @include flex(column, nowrap, center, center);
+                cursor: pointer;
+                &:hover {
+                    background-color: var(--verde-transparente);
+                    border: 1px solid var(--gris-tenedor);
+                    svg {
+                        fill: var(--verde-fork-oscuro);
+                    }
+                }
+                svg {
+                    width: 20px;
+                }
+            }
+        }
+        .puntos__slider {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            // background-color: red;
+            @include flex(row, nowrap, space-around, center);
+            @media screen and (max-width: 900px) {
+                display: none;
+            }
+            .punto {
+                cursor: pointer;
+                width: 15px;
+                height: 15px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                transition: 0.5s;
+                &.activo {
+                    transform: scale(1.4);
+                    background-color: white;
+                }
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+    .seguridad {
+        width: 100%;
+        padding: 2rem;
+        background-color: #dae9f1;
+        position: relative;
+        @include flex(column, nowrap, center, flex-start);
+        &::before {
+            content: "";
+            height: 100%;
+            width: 4px;
+            background-color: #006399;
+            left: 0;
+            top: 0;
+            position: absolute;
+        }
+        .aviso {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .contenido__seguridad {
+            height: 0;
+            overflow: hidden;
+            &.activo {
+                height: auto;
+            }
+            .ul__seguridad {
+                .li__seguridad {
+                    @include flex(row, nowrap, flex-start, center);
+                    margin: 0.5rem 0;
+                    .span__svg svg {
+                        width: 15px;
+                        fill: rgb(63, 114, 172);
+                        margin-right: 0.8rem;
+                    }
+                }
+            }
+            .p__asterisco {
+                font-size: 0.75rem;
+                margin: 1.3rem 0;
+            }
+        }
+        .ver__ocultar {
+            cursor: pointer;
+            color: rgb(28, 83, 146);
+            font-weight: 600;
+            font-size: 0.75rem;
+            margin-top: 1rem;
+        }
+    }
+    .tabs__restaurante {
+        width: 100%;
+        .tabs {
+            border-bottom: 1px solid rgb(230, 230, 230);
+            @include flex(row, nowrap, flex-start, center);
+            .tab {
+                cursor: pointer;
+                padding: 1.2rem;
+                font-size: 1rem;
+                font-weight: 600;
+                position: relative;
+                &.activo {
+                    color: var(--verde-fork);
+                    &::after {
+                        position: absolute;
+                        content: "";
+                        width: 100%;
+                        height: 4px;
+                        background-color: var(--verde-fork);
+                        bottom: -1px;
+                        left: 0;
+                    }
+                }
+            }
+        }
+        .contenido__tabs {
+            margin: 2rem 0;
+            display: none;
+            &.activo {
+                display: block;
+            }
+            .contenido__h2 {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: var(--gris-texto);
+                margin: 1rem 0;
+            }
+            .small {
+                margin: 2rem 0 1rem;
+                font-size: 0.8rem;
+            }
+            p.insider {
+                line-height: 1.4rem;
+            }
+            .consejo__insider {
+                width: 100%;
+                background-color: #28433c;
+                color: white;
+                padding: 1.2rem;
+                border-radius: 0.25rem;
+                margin: 1rem 0;
+                .consejo {
+                    font-weight: 600;
+                    margin-bottom: 0.5rem;
+                }
+            }
+            .tags__precio {
+                @include flex(row, nowrap, flex-start, center);
+                margin: 2rem 0;
+                .tag {
+                    margin-right: 0.5rem;
+                }
+                .svg__billete svg {
+                    width: 20px;
+                }
+                .precio__medio {
+                    font-weight: 700;
+                }
+                .ayuda svg {
+                    width: 15px;
+                    fill: var(--verde-fork);
+                }
+                .welcome {
+                    margin-left: 0.5rem;
+                    position: relative;
+                    font-weight: 700;
+                    @include flex(row, nowrap, flex-start, center);
+                    &::before {
+                        position: absolute;
+                        content: "";
+                        width: 3px;
+                        height: 3px;
+                        background-color: black;
+                        border-radius: 50%;
+                        top: 40%;
+                        left: -10px;
+                    }
+                    .svg__welcome svg {
+                        margin-right: 0.3rem;
+                        .blue {
+                            fill: #006fcf;
+                        }
+                        .white {
+                            fill: white;
+                        }
+                    }
+                }
+            }
+            .textos__main {
+                @include flex(row, nowrap, flex-start, flex-end);
+                p.menu {
+                    line-height: 1.5rem;
+                }
+                span.menu {
+                    margin-left: 0.5rem;
+                    font-size: 1.2rem;
+                }
+                .menu {
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    margin: 0.7rem 0;
+                }
+            }
+            .enlace__menu {
+                width: 100%;
+                .btn__enlace {
+                    margin: 1rem auto;
+                    background-color: blue;
+                    padding: 1rem 1.5rem;
+                    color: white;
+                    background-color: var(--verde-fork);
+                    font-weight: 700;
+                    border-radius: 0.3rem;
+                    &:hover {
+                        background-color: var(--verde-fork-oscuro);
+                    }
+                }
+            }
+        }
+    }
+}
+.derecha {
+    margin: 1rem 0 2rem;
+    // background-color: limegreen;
+    width: 35%;
+    position: sticky;
+    right: 0;
+    top: 0;
+    @media screen and (max-width: 900px) {
+        width: 100%;
+        margin: 2rem auto;
+    }
+    .grupo__derecha{
+        border-radius: 0.875rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        .top {
+            border-top-right-radius: 0.875rem;
+            border-top-left-radius: 0.875rem;
+            width: 100%;
+            padding: 1rem 1rem 0.1rem;
+            background-color: #f7f7f8;
+            .h5__top {
+                width: 100%;
+                @include flex(row, nowrap, space-between, center);
+                font-size: 1.25rem;
+                font-weight: 600;
+                .tag.descuento {
+                    background-color: black;
+                    color: white;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    padding: 0.2rem 0.4rem;
+                    border-radius: 0.2rem;
+                }
+            }
+            .p__top {
+                font-size: 0.75rem;
+                margin: 0.7rem 0;
+                .span__top {
+                    margin-left: 0.5rem;
+                    position: relative;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 40%;
+                        left: -6px;
+                        width: 2px;
+                        height: 2px;
+                        background-color: black;
+                    }
+                }
+            }
+        }
+        .pestanas {
+            width: 100%;
+            padding: 0.5rem;
+            border-top: 1px solid lightgray;
+            border-bottom: 1px solid lightgray;
+            .secciones {
+                padding: 0.2rem;
+                border-radius: 0.3rem;
+                width: 100%;
+                height: 100%;
+                background-color: #e8f0e5;
+                @include flex(row, nowrap, space-around, center);
+            }
+            .seccion {
+                color: black;
+                font-size: 0.8rem;
+                font-weight: 600;
+                @include flex(row, nowrap, center, center);
+                flex: 1;
+                position: relative;
+                cursor: pointer;
+                &.fecha {
+                    color: white;
+                    overflow-x: ellipsis;
+                    background-color: var(--verde-fork);
+                    padding-left: 0.5rem;
+                    border-top-left-radius: 0.2rem;
+                    border-bottom-left-radius: 0.2rem;
+                }
+                span svg {
+                    margin: 0 0.5rem;
+                    width: 18px;
+                }
+                &:not(:first-of-type, :last-of-type) {
+                    &::after {
+                        content: ">";
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        color: rgb(184, 184, 184);
+                        font-size: 1.3rem;
+                        font-weight: 200;
+                    }
+                }
+            }
+        }
+        .calendario {
+            padding: 0.3rem;
+            .fecha__calendario {
+                position: relative;
+                width: 100%;
+                padding: 0.3rem 0;
+                margin: 1rem 0;
+                // background-color: blue;
+                .flechas {
+                    width: 100%;
+                    position: absolute;
+                    margin: auto;
+                    bottom: 0;
+                    z-index: 2;
+                    // background-color: red;
+                    @include flex(row, nowrap, space-between, center);
+                    .fl {
+                        background-color: rgba(232, 240, 229, 0);
+                        width: 30px;
+                        height: 30px;
+                        @include flex(row, nowrap, center, center);
+                        border-radius: 0.2rem;
+                        cursor: pointer;
+                        svg {
+                            fill: var(--verde-fork);
+                            width: 18px;
+                        }
+                        &:hover {
+                            background-color: rgba(232, 240, 229, 1);
+                            svg {
+                                fill: var(--verde-fork-oscuro);
+                            }
+                        }
+                    }
+                }
+                .contenedor__meses{
+                    // background-color: red;
+                    width: 100%;
+                    overflow-x: hidden;
+                    .cada__mes{
+                        @include flex( row, nowrap, center,center);
+                        .span__fecha {
+                            text-align: center;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+            .tabla__calendario {
+                width: 100%;
+                margin: 0.5rem 0 0;
+                // background-color: red;
+                .semana {
+                    @include flex(row, nowrap, space-around, center);
+                    .dia__semana {
+                        font-size: 0.6rem;
+                        text-transform: uppercase;
+                    }
+                }
+                .mes {
+                    padding: 1rem .5rem;
+                    display: grid;
+                    grid-template-columns: repeat(7, 1fr);
+                    grid-template-rows: repeat(5, 1fr);
+                    gap: .3rem;
+                    // background-color: red;
+                    .dia__mes{
+                        @include flex(column, nowrap, center, center);
+                        // background-color: violet;
+                        border: 1px solid var(--gris-medio);
+                        border-radius: .3rem;
+                        position: relative;
+                        cursor: pointer;
+                            &::after{
+                                content: '';
+                                position: absolute;
+                                width: 30%;
+                                height: 2px;
+                                bottom: 40%;
+                                right: 35%;
+                                background-color: var(--amarillo-fork); 
+                            }
+                            &:hover{
+                                border: 1px solid var(--gris-tenedor);
+                                background-color: var(--verde-transparente);
+                                .numero{
+                                    color: var(--verde-fork-oscuro);
+                                }
+                            }
+                        .numero{
+                            padding: .4rem 0;
+                            font-size: .875rem;
+                            
+                        }
+                        .desc{
+                            background-color: black;
+                            color: white;
+                            font-weight: 600;
+                            font-size: .65rem;
+                            width: 100%;
+                            border-bottom-left-radius: .3rem;
+                            border-bottom-right-radius: .3rem;
+                            text-align: center;
+                            padding: .1rem 0;
+                        }
+                    }
+                }
+            }
+            .mensaje__yums{
+                @include flex( row, nowrap, center, center);
+                margin: 0 0 .5rem;
+                .svg__yums{
+                    svg{
+                        background-color: rgb(255, 221, 0);
+                    }
+                }
+                .texto{
+                    font-size: .6rem;
+                    font-weight: 700;
+                    margin-left: .5rem;
+                    border-bottom: 2px solid var(--amarillo-fork);
+                }
+            }
+        }
+    }
+    .mensaje__reserva__yums{
+        margin-top: 1rem;
+        border: 1px solid rgb(230, 230, 230);
+        border-radius: .3rem;
+        padding: 1rem;
+        @include flex( row, nowrap, space-between, center);
+        .svg__reserva__yums{
+            background-color: rgb(254, 249, 214);
+            width: 15%;
+            margin-right: 5%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            @include flex( row, nowrap, center, center);
+            @media screen and (max-width:900px) {
+                width: 10%;
+            }
+            @media screen and (max-width:550px) {
+                background-color: none;
+                width: 10%;
+            }
+            svg{
+                border-radius: 50%;
+                height: 15px;
+                @media screen and (max-width:900px) {
+                    height: 30px;
+                    width: 30px;
+                }
+                @media screen and (max-width:550px) {
+                    background-color: rgb(254, 249, 214); 
+                }
+            }
+        }
+        .texto__reserva__yums{
+            width: 80%;
+            font-size: .75rem;
+            @media screen and (max-width:900px) {
+                font-size: 1rem;
+                font-weight: 500;
+            }
+        }
+    }
+}

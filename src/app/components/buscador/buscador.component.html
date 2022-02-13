@@ -1,0 +1,38 @@
+<div class="buscador">
+    <div class="buscador__back"><img src="/assets/imgs/buscador-background.webp" alt=""></div>
+    <div class="contenido__buscador">
+        <h2 class="titulo__buscador">Descubre y reserva el mejor restaurante</h2>
+        <form class="form__buscador">
+            <div class="contenido__input">
+                <label for="restaurante">Qué</label>
+                <input class="que" name="palabrabusqueda" [(ngModel)]="palabrabusqueda" type="text" autocomplete="off"
+                (click)="inputTocado()"
+                    placeholder="Tipo de cocina, nombre del restaurante...">
+                <ul 
+                [ngClass]="{'activo': touched}"
+                class="ul__buscador">
+                    <li class="li__buscador"
+                    *ngFor="let restaurante of restaurantes | busqueda : palabrabusqueda" >
+                        <a [routerLink]="['/',restaurante.tipo ,restaurante.enlace]">
+                            <span class="svg__buscador">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    aria-hidden="true" focusable="false" class="css-p3qwn0 etakkbk0">
+                                    <path fill-rule="evenodd"
+                                        d="M11.997 15.375v6.375a.75.75 0 01-.614.738l-.135.012H3.75a.75.75 0 01-.738-.615L3 21.75l-.001-10.046a3.186 3.186 0 01-1.491-2.476L1.5 9l.001-.048.021-.134 1.5-6a.75.75 0 01.601-.557l.127-.011h16.5a.75.75 0 01.686.448l.042.12 1.5 6a.755.755 0 01.022.184c0 1.139-.6 2.14-1.5 2.703V21.75a.75.75 0 01-.615.738l-.135.012h-3a.75.75 0 01-.738-.615l-.012-.135v-6.375a.375.375 0 00-.375-.375h-3.753a.375.375 0 00-.375.375zM12 3.75a.75.75 0 00-.75.75V9l-.01.184a1.688 1.688 0 01-3.355 0l-.009-.153.555-4.434.005-.135a.75.75 0 00-.656-.702l-.135-.005a.75.75 0 00-.702.656L6.38 8.907l-.005.067L6.375 9c0 .932-.756 1.687-1.688 1.687a.75.75 0 000 1.5c.978 0 1.853-.44 2.437-1.134a3.18 3.18 0 002.439 1.134c.977 0 1.852-.44 2.436-1.134a3.18 3.18 0 002.438 1.134 3.17 3.17 0 002.436-1.135 3.18 3.18 0 002.44 1.136.75.75 0 000-1.5A1.687 1.687 0 0117.624 9l-.001-.045-.005-.048-.562-4.495-.029-.132a.75.75 0 00-1.46.318l.555 4.44-.008.146A1.688 1.688 0 0112.75 9V4.5l-.012-.135A.75.75 0 0012 3.75z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <div class="texto__li">
+                                <h5 class="nombre__buscador">{{restaurante.titulo}}</h5>
+                                <h6 class="lugar__buscador">{{restaurante.parrafo}}</h6>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <label for="donde">Dónde</label>
+            <input name="lugarbusqueda" [(ngModel)]="lugarbusqueda" type="text" placeholder="Madrid" class="donde">
+            <button>BÚSQUEDA</button>
+        </form>
+    </div>
+</div>

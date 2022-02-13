@@ -1,0 +1,24 @@
+<app-nueva-tarjeta></app-nueva-tarjeta>
+<app-buscador></app-buscador>
+<div class="wrapper">
+    <app-propositos></app-propositos>
+    <!-- Repetirlo 8 veces con ngFor -->
+    <app-slider-restaurante
+    *ngFor="let slider of slidersTop"
+    [titulo] = "slider.titulo"
+    [cuantosVeo] = "slider.cuantosVeo"
+    [contenidos] = "slider.contenido"
+    [tipoSlider] = "slider.tipoSlider"
+    ></app-slider-restaurante>
+    <!--  -->
+    <app-como-funciona></app-como-funciona>
+    <app-slider-restaurante
+    *ngFor="let slider of slidersBot"
+    [titulo] = "slider.titulo"
+    [cuantosVeo] = "slider.cuantosVeo"
+    [contenidos] = "slider.contenido"
+    [tipoSlider] = "slider.tipoSlider"
+    ></app-slider-restaurante>
+    <app-acerca-the-fork></app-acerca-the-fork>
+    <app-eres-propietario></app-eres-propietario>
+</div>

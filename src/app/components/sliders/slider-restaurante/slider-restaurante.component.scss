@@ -1,0 +1,79 @@
+@import "src/assets/mixins";
+.contenedor__slider {
+    width: 100%;
+    .slider__top {
+        @include flex(row, nowrap, space-between, center);
+        .titulo__seccion{
+            margin-bottom: 0;
+        }
+        .slider__flechas {
+            @include flex(row, nowrap, space-between, center);
+            @media screen and (max-width: 800px) {
+                display: none;
+            }
+            .flecha{
+                cursor: pointer;
+                border: 1px solid var(--gris-medio);
+                width: 2.9rem;
+                height: 2.9rem;
+                border-radius: .3rem;
+                @include flex(row, nowrap, center, center);
+                &.inactive{
+                    pointer-events: none;
+                    background-color: hsl(220, 9%, 93%);;
+                    border-color: hsl(220, 9%, 93%);;
+                    .svg__flecha{
+                        fill: hsl(220, 9%, 62%);
+                    }
+                }
+                &:hover{
+                    border-color: black;
+                    background-color: rgb(219, 232, 215);
+                    .svg__flecha{
+                        fill: var(--verde-fork-oscuro);
+                    }
+                }
+                &.izq{
+                    margin-right: .5rem;
+                }
+                .svg__flecha{
+                    width: 1.25rem;
+                }
+            }
+        }
+    }
+    .slider__bot{
+        overflow-x: hidden;
+        @media screen and (max-width: 800px) {
+            overflow-x: scroll;
+            margin-bottom: 1rem;
+        }
+        &::-webkit-scrollbar{
+            @media screen and (max-width: 800px) {
+                -webkit-appearance: none;
+            }
+        }
+        &::-webkit-scrollbar:horizontal{
+            @media screen and (max-width: 800px) {
+                height: 8px;
+            }
+        }
+        &::-webkit-scrollbar-thumb{
+            @media screen and (max-width: 800px) {
+                background-color: var(--gris-medio);
+                border-radius: 5px;
+                &:hover{
+                 background-color: var(--verde-fork);   
+                }
+            }
+        }
+        .contenedor__tarjetas{
+            padding: 1rem 0;
+            transition: .5s;
+            @include flex(row, nowrap, flex-start, center);
+        }
+    }
+}
+.absolute{
+    background-color: rgba(0, 255, 0, 0.701);
+}

@@ -1,0 +1,64 @@
+@import 'src/assets/mixins.scss';
+.nav__top{
+    background-color: rgb(247 247 248);
+    @include flex( row, nowrap, flex-end, center);
+    color: var(--verde-fork);
+    padding: .5rem;
+    @media screen and (max-width: 750px) {
+        display: none;
+    }
+    .nav__registrar{
+        display: flex;
+        .sign__up, .help{
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-flow: row nowrap;
+            &:hover{
+                color: var(--verde-fork-oscuro);
+                border-bottom: 1px solid var(--verde-fork-oscuro);
+            }
+        }
+        .separador{
+            margin: 0 .6rem 0 .6rem;
+        }
+    }
+}
+header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    background-color: white;
+    .verde__fork{
+        fill: var(--verde-fork);
+    }
+    .negro__fork{
+        fill: black;
+    }
+    .nav__bot{
+        @include flex(row, nowrap, space-between, center);
+        padding: 1rem 1.5rem;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.157);
+        .nav__iniciar a{
+            cursor: pointer;
+            @include flex(row, nowrap, center, center);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--verde-fork);
+            svg{
+                width: 1.2rem;
+                margin-right: 0.5rem;
+                @media screen and (max-width: 900px) {
+                    width: 1.5rem;
+                }
+            }
+            span{
+                @media screen and (max-width: 900px) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
