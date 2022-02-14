@@ -89,7 +89,7 @@ export class RestauranteComponent implements OnInit {
                     ]
   dias            : Array<any> = []
   // Variables eventos Calendario
-    posicion        : number = 2
+    posicion        : number = 1
     numeroMeses     : number = this.meses.length
 
   constructor(
@@ -159,6 +159,7 @@ export class RestauranteComponent implements OnInit {
       if(this.posicion >= this.meses.length){
         this.posicion = 0
       }
+      this.numero()
     }
     disminuirPosicion() : void {
       this.posicion--
@@ -169,12 +170,15 @@ export class RestauranteComponent implements OnInit {
   
   // Método días calendario
   numero() : void {
+    this.dias = []
     this.meses.forEach(  (mes, i) => {
       if( i == this.posicion){
         for(let dia = 1; dia < mes.dias + 1 ; dia++) {
           this.dias.push(dia)
+          console.log(dia)
         }
       }
     })
+    
   }
 }

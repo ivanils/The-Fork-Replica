@@ -588,22 +588,24 @@
                         border-radius: .3rem;
                         position: relative;
                         cursor: pointer;
-                            &::after{
-                                content: '';
-                                position: absolute;
-                                width: 30%;
-                                height: 2px;
-                                bottom: 40%;
-                                right: 35%;
-                                background-color: var(--amarillo-fork); 
+                        &::after{
+                            content: '';
+                            position: absolute;
+                            width: 30%;
+                            height: 2px;
+                            bottom: 40%;
+                            right: 35%;
+                            background-color: var(--amarillo-fork); 
+                        }
+                        &:hover{
+                            border: 1px solid var(--gris-tenedor);
+                            background-color: var(--verde-transparente);
+                            .numero{
+                                color: var(--verde-fork-oscuro);
                             }
-                            &:hover{
-                                border: 1px solid var(--gris-tenedor);
-                                background-color: var(--verde-transparente);
-                                .numero{
-                                    color: var(--verde-fork-oscuro);
-                                }
-                            }
+                        }&:first-of-type{
+                            grid-column-start: 2;
+                        }
                         .numero{
                             padding: .4rem 0;
                             font-size: .875rem;
