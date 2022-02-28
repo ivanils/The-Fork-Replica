@@ -46,3 +46,8 @@ export interface DetallesRestaurante{
     parrafo : string,
     precio? : number
 }
+export interface Mes{
+    ano : number,
+    mes : string,
+    dias : number
+}

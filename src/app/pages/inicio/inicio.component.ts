@@ -15,10 +15,18 @@ export class InicioComponent implements OnInit {
   constructor(
     private aplicacionService : AplicacionService
   ) { 
+    //Para usar SIN la API
     this.slidersTop = aplicacionService.slidersTop
     this.slidersBot = aplicacionService.slidersBot
   }
   ngOnInit(): void {
+    // Para usar CON la API
+    /*this.aplicacionService.getSlidersTop().subscribe((data : any)=>{
+      this.slidersTop = data
+    })
+    this.aplicacionService.getSlidersBot().subscribe((data : any)=>{
+      this.slidersBot = data
+    })*/
   }
 
 }

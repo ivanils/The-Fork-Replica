@@ -16,7 +16,13 @@ export class BuscadorComponent implements OnInit {
   constructor(
     private aplicacionService : AplicacionService
   ) { 
+    //Para usar SIN la API
     this.restaurantes = aplicacionService.listaRestaurantes
+    
+    //Para usar CON la API
+    // this.aplicacionService.getListaRestaurantes().subscribe((data : any)=>{
+    //   this.restaurantes = data
+    // })
   }
 
   ngOnInit(): void {

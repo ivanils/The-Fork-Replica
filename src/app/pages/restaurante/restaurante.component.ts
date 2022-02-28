@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Mes } from 'src/app/interfaces/interfaces';
 import { AplicacionService } from 'src/app/services/aplicacion.service';
 
 @Component({
@@ -25,7 +26,7 @@ export class RestauranteComponent implements OnInit {
     
 // Crear calendario
   arraySemana     : Array<string> = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo']
-  meses           : Array<any> = [
+  meses           : Array<Mes> = [
     {
         ano : 2022,
         mes : 'Enero',
@@ -89,7 +90,7 @@ export class RestauranteComponent implements OnInit {
                     ]
   dias            : Array<any> = []
   // Variables eventos Calendario
-    posicion        : number = 1
+    posicion        : number = 2
     numeroMeses     : number = this.meses.length
 
   constructor(
@@ -99,6 +100,14 @@ export class RestauranteComponent implements OnInit {
     
     ngOnInit(): void {
       this.activatedRoute.params.subscribe( ( { url } ) => { 
+        //Para usar con la API:
+        /*this.bbddService.getRestaurante(url).subscribe((data:any)=>{
+          this.infoRestaurante = data
+          this.numeroImagenes = this.infoRestaurante.imagenes.length
+          this.arrayInfo = this.infoRestaurante.detalles
+        })*/
+
+        //Para usar sin la API:
         this.infoRestaurante = this.bbddService.listaRestaurantes.find( cadaRestaurante => cadaRestaurante.enlace === url)
         this.numeroImagenes = this.infoRestaurante.imagenes.length
         this.arrayInfo = this.infoRestaurante.detalles
