@@ -22,26 +22,6 @@
   }
   }
   
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-primario: #f0f0f0;
-      --color-secundario: #181818;
-    }
-  }
-  
-  @media (prefers-contrast: high) {
-    :root {
-      --color-primario: black;
-      --color-secundario: white;
-    }
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation: none;
-      transition: none;
-    }
-  }
   
   * {
     margin: 0;
